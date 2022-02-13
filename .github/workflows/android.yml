@@ -1,0 +1,13 @@
+name: Android CI
+on: [pull_request]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: set up JDK
+      uses: actions/setup-java@v1
+      with:
+        java-version: 11
+    - name: Build with Gradle
+      run: chmod 777 ./gradlew && ./gradlew inrt:assemble &&  ./gradlew inrt:cp2APP && ./gradlew app:assembleRelease
