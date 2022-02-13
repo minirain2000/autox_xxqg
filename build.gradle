@@ -1,0 +1,46 @@
+import groovy.json.JsonSlurper
+
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+buildscript {
+    ext.kotlin_version = '1.4.10'
+    repositories {
+        mavenLocal()
+        maven { url 'https://maven.aliyun.com/repository/central' }
+        maven { url "https://jitpack.io" }
+        maven { url 'http://120.25.164.233:8081/nexus/content/groups/public/' }
+        google { url 'https://maven.aliyun.com/repository/google' }
+        google()
+        jcenter { url 'https://maven.aliyun.com/repository/public' }
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:4.1.0'
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath 'com.jakewharton:butterknife-gradle-plugin:10.2.1'
+        classpath 'org.codehaus.groovy:groovy-json:3.0.6'
+
+
+    }
+}
+
+allprojects {
+    repositories {
+        mavenLocal()
+        maven { url 'https://maven.aliyun.com/repository/central' }
+        maven { url "https://jitpack.io" }
+        maven { url 'http://120.25.164.233:8081/nexus/content/groups/public/' }
+        google { url 'https://maven.aliyun.com/repository/google' }
+        google()
+        jcenter { url 'https://maven.aliyun.com/repository/public' }
+        jcenter()
+
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+
+ext {
+    versions = new JsonSlurper().parse(file('./project-versions.json'))
+}
